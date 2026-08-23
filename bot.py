@@ -1,1 +1,18 @@
-MTU0MDczMTMzMjc3NzIxNDExNA.Gw9Df1.7v0_bIkDR4c4eNyIkKIAlUtjd9O7Ony3ZD_qpk
+import os
+import discord
+from discord.ext import commands
+
+intents = discord.Intents.default()
+intents.message_content = True
+
+bot = commands.Bot(command_prefix="!", intents=intents)
+
+@bot.event
+async def on_ready():
+    print(f"Bot online: {bot.user}")
+
+@bot.command()
+async def hello(ctx):
+    await ctx.send("Hello! 👋")
+
+bot.run(os.getenv("DISCORD_TOKEN"))
